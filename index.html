@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egido Logística - Presentación Corporativa</title>
+    <!-- Tailwind CSS para el diseño rápido y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor de la presentación con relación de aspecto 16:9 */
+        #presentation {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background-color: #1e293b; /* Fondo oscuro de respaldo */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        /* Estilos de las diapositivas */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            z-index: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Superposición oscura para que el texto sea legible */
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%);
+            z-index: 1;
+        }
+
+        /* Controles de navegación */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        .indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 50;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #f97316; /* Naranjo corporativo */
+            transform: scale(1.3);
+        }
+
+        /* Controles oscuros/azules para fondos claros */
+        #presentation.light-theme .nav-btn {
+            background: rgba(37, 99, 235, 0.15);
+            color: #1e40af; /* Azul corporativo oscuro */
+        }
+        
+        #presentation.light-theme .nav-btn:hover {
+            background: rgba(37, 99, 235, 0.3);
+        }
+
+        #presentation.light-theme .dot {
+            background: rgba(37, 99, 235, 0.3);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* Estilo para la imagen de fondo */
+        .bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div id="presentation" class="rounded-xl border-4 border-white/10">
+
+        <!-- DIAPOSITIVA 1: PORTADA -->
+        <div class="slide active">
+            <img src="https://static.wixstatic.com/media/b56c11_2941938d9e1746b7a09c4a8cb2bd077b~mv2.jpeg/v1/fill/w_740,h_454,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/b56c11_2941938d9e1746b7a09c4a8cb2bd077b~mv2.jpeg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1591768793355-74d7c80b0e17?auto=format&fit=crop&w=1920&q=80'" 
+                 class="bg-img" 
+                 alt="Camión profesional en carretera">
+            
+            <div class="bg-overlay"></div>
+            
+            <div class="flex-1 flex flex-col justify-center items-center text-center p-12 text-white h-full z-10 relative">
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 tracking-tight text-shadow">
+                    <span class="text-white">EGIDO</span><span class="text-orange-500">LOGÍSTICA</span>
+                </h1>
+                <div class="w-32 h-1.5 bg-blue-500 mb-8 rounded-full shadow-lg"></div>
+                <h2 class="text-3xl md:text-4xl font-light mb-4 text-shadow">Excelencia en soluciones Logísticas.</h2>
+                <p class="text-xl md:text-2xl font-semibold text-blue-300 text-shadow">Región de Valparaíso</p>
+                <p class="text-lg md:text-xl font-light mt-2 italic text-gray-200 text-shadow">El corazón del comercio exterior chileno</p>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVA 2: TRADICIÓN Y VISIÓN -->
+        <div class="slide bg-slate-900 text-white flex flex-row">
+            <div class="w-1/2 p-16 flex flex-col justify-center">
+                <h2 class="text-blue-400 font-semibold tracking-wider uppercase mb-2">Acerca de nosotros</h2>
+                <h3 class="text-5xl font-bold mb-4 leading-tight">Tradición y Visión</h3>
+                <h4 class="text-2xl font-light mb-8 text-gray-300">Más de un siglo conectando caminos</h4>
+                
+                <p class="text-lg mb-6 text-gray-300 leading-relaxed">
+                    Egido Logística combina un sólido legado en transporte terrestre con la agilidad requerida por la cadena de suministro del siglo XXI.
+                </p>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Con base estratégica en la <strong>Región de Valparaíso</strong>, gestionamos operaciones complejas con altos estándares de precisión y seguridad.
+                </p>
+            </div>
+            <div class="w-1/2 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover">
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVA 3: LÍNEA DE TIEMPO -->
+        <div class="slide bg-white text-slate-800 p-12 flex flex-col" data-theme="light">
+            <div class="mb-10 text-center">
+                <h3 class="text-4xl font-bold text-slate-900">Nuestra Evolución Histórica</h3>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </div>
+            
+            <div class="flex-1 flex items-center justify-center">
+                <div class="grid grid-cols-4 gap-6 w-full max-w-5xl relative">
+                    <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 hidden md:block z-0"></div>
+
+                    <div class="bg-slate-50 rounded-xl p-6 shadow-md z-10 border-t-4 border-blue-600">
+                        <div class="text-3xl font-black text-blue-600 mb-2">1916</div>
+                        <h4 class="text-lg font-bold mb-2">El Origen</h4>
+                        <p class="text-xs text-gray-600 leading-tight">Fundación de "La Catalana". Inicio del legado familiar en el transporte.</p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-6 shadow-md z-10 border-t-4 border-blue-600">
+                        <div class="text-3xl font-black text-blue-600 mb-2">2009</div>
+                        <h4 class="text-lg font-bold mb-2">Evolución</h4>
+                        <p class="text-xs text-gray-600 leading-tight">Nace Egido Logística con tecnología moderna para la gestión.</p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-6 shadow-md z-10 border-t-4 border-blue-600">
+                        <div class="text-3xl font-black text-blue-600 mb-2">2020</div>
+                        <h4 class="text-lg font-bold mb-2">Hito País</h4>
+                        <p class="text-xs text-gray-600 leading-tight">Operación crítica de traslado de vacunas COVID-19 en Chile.</p>
+                    </div>
+
+                    <div class="bg-blue-600 text-white rounded-xl p-6 shadow-xl z-10 border-t-4 border-orange-500">
+                        <div class="text-3xl font-black mb-2">HOY</div>
+                        <h4 class="text-lg font-bold mb-2">Red Operativa</h4>
+                        <p class="text-xs text-blue-100 leading-tight">+40 unidades en Valparaíso, San Antonio y Santiago.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVA 4: RESPALDO -->
+        <div class="slide relative">
+            <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1920&q=80" class="bg-img">
+            <div class="bg-overlay"></div>
+            <div class="relative z-10 h-full p-16 flex flex-col justify-center w-2/3 text-white">
+                <h3 class="text-4xl font-bold mb-4">Respaldo y Seguridad</h3>
+                <h4 class="text-xl text-blue-300 font-semibold mb-8">Estrategia Corporativa</h4>
+                
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-2xl">
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><i data-lucide="shield-check" class="mr-4 text-orange-500 w-8 h-8"></i> 
+                            <div><span class="font-bold block text-lg">Seguridad Avanzada</span> Sistemas CCTV y control perimetral estricto.</div>
+                        </li>
+                        <li class="flex items-start"><i data-lucide="users" class="mr-4 text-orange-500 w-8 h-8"></i> 
+                            <div><span class="font-bold block text-lg">Capital Humano</span> Capacitación continua en conducción defensiva.</div>
+                        </li>
+                        <li class="flex items-start"><i data-lucide="trending-up" class="mr-4 text-orange-500 w-8 h-8"></i> 
+                            <div><span class="font-bold block text-lg">Eficiencia</span> Mitigación de riesgos y optimización de rutas.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVA 5: SOLUCIONES Y SEGURIDAD -->
+        <div class="slide bg-white text-slate-800 pt-24 pb-8 px-12 flex flex-col items-center overflow-hidden" data-theme="light">
+            <!-- Barra superior decorativa como en la sección 6 -->
+            <div class="absolute top-0 left-0 w-full h-16 bg-slate-900 border-b-4 border-blue-600 z-0"></div>
+
+            <div class="relative z-10 w-full max-w-6xl flex flex-row gap-10 h-full">
+                
+                <!-- Columna Izquierda: Soluciones -->
+                <div class="w-1/2 flex flex-col h-full">
+                    <div class="mb-4 shrink-0">
+                        <h3 class="text-3xl font-bold text-slate-900 leading-tight">Soluciones Logísticas a medida</h3>
+                        <div class="w-20 h-1 bg-orange-500 mt-3 rounded"></div>
+                    </div>
+                    <div class="flex-1 bg-slate-50 border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-center overflow-hidden">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-500 mr-3 shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 text-base leading-tight"><strong>Transporte de carga general y consolidada.</strong> Documentado mediante reportes.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-500 mr-3 shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 text-base leading-tight"><strong>Trasvasije y servicio directo</strong> a la carga.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-500 mr-3 shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 text-base leading-tight"><strong>Carga refrigerada (Reefer)</strong> controlada.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-500 mr-3 shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 text-base leading-tight"><strong>Transporte de carga sobredimensionada.</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-500 mr-3 shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 text-base leading-tight"><strong>Apoyo logístico integral</strong> en terminales portuarios.</span>
+                            </li>
+                            <!-- Item de escolta resaltado -->
+                            <li class="flex items-start bg-blue-50 p-4 rounded-xl border border-blue-100 mt-2 shrink-0">
+                                <i data-lucide="shield-alert" class="w-5 h-5 text-blue-600 mr-3 shrink-0 mt-0.5"></i>
+                                <span class="text-blue-900 font-medium text-sm leading-tight">Servicio de escolta especializado para el resguardo y traslado seguro de mercaderías sensibles o de alto valor.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Propuesta de valor & Seguridad -->
+                <div class="w-1/2 flex flex-col h-full">
+                    <div class="mb-4 shrink-0">
+                        <h3 class="text-3xl font-bold text-slate-900 leading-tight">Propuesta de valor y trazabilidad</h3>
+                        <div class="w-20 h-1 bg-blue-600 mt-3 rounded"></div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6 text-base leading-snug shrink-0">
+                        Nuestra estrategia se fundamenta en pilares clave que aseguran la mitigación de riesgos y eficiencia operativa. Disponemos de altos estándares de seguridad, CCTV, control perimetral y capacitación continua.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 flex-1">
+                        <div class="bg-white border border-gray-200 p-4 rounded-xl flex flex-col justify-center shadow-sm">
+                            <i data-lucide="satellite" class="text-blue-600 w-7 h-7 mb-3"></i>
+                            <span class="font-bold text-slate-800 text-base mb-1">Monitoreo GPS</span>
+                            <div class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-1"></i><span class="text-green-600 font-bold text-sm">24/7 Activo</span></div>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 p-4 rounded-xl flex flex-col justify-center shadow-sm">
+                            <i data-lucide="cctv" class="text-blue-600 w-7 h-7 mb-3"></i>
+                            <span class="font-bold text-slate-800 text-base mb-1">CCTV con IA</span>
+                            <div class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-1"></i><span class="text-green-600 font-bold text-sm">Vigilancia Real</span></div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 p-4 rounded-xl flex flex-col justify-center shadow-sm">
+                            <i data-lucide="zap" class="text-blue-600 w-7 h-7 mb-3"></i>
+                            <span class="font-bold text-slate-800 text-base mb-1">Control Perimetral</span>
+                            <div class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-1"></i><span class="text-green-600 font-bold text-sm">Base Blindada</span></div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 p-4 rounded-xl flex flex-col justify-center shadow-sm">
+                            <i data-lucide="shield-check" class="text-blue-600 w-7 h-7 mb-3"></i>
+                            <span class="font-bold text-slate-800 text-base mb-1">Seguros de Carga</span>
+                            <div class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-1"></i><span class="text-green-600 font-bold text-sm">Cobertura Total</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVA 6: ALIADOS (Ajustada con los logos reales) -->
+        <div class="slide bg-gray-50 text-slate-800 p-12 flex flex-col items-center justify-center text-center overflow-hidden" data-theme="light">
+            <!-- Barra superior decorativa solicitada anteriormente -->
+            <div class="absolute top-0 left-0 w-full h-16 bg-slate-900 border-b-4 border-blue-600"></div>
+
+            <div class="relative z-10 flex flex-col items-center w-full mt-8">
+                <h3 class="text-4xl font-bold mb-4 text-slate-900">Aliados que Confían en Nosotros</h3>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl">
+                    Más de <span class="font-bold text-blue-600">30 empresas líderes</span> respaldan nuestra gestión.
+                </p>
+                
+                <!-- Grid de Logos Reales -->
+                <div class="grid grid-cols-3 gap-6 w-full max-w-4xl">
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col items-center justify-center h-28">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E0BAQEyejjiYo3EsQ/company-logo_200_200/B4EZpPI_bMJ0AI-/0/1762264348875/empresas_lipigas_logo?e=2147483647&v=beta&t=yCL7uBcjLIeKoW4LJbRVK0n_sPFDGg-ZEvNgv9SFCm0" alt="Lipigas" class="h-full w-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col items-center justify-center h-28">
+                        <img src="https://mydnadigital.com/company/logos/laboratorios-saval.png" alt="Saval" class="h-full w-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col items-center justify-center h-28">
+                        <img src="https://aventoures.cl/wp-content/uploads/2025/01/logo_indomita-500x125.png" alt="Indómita" class="h-full w-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col items-center justify-center h-28">
+                        <img src="https://i0.wp.com/portalcentro.cl/wp-content/uploads/2023/11/maui_sons-logo.jpg?fit=800%2C800&ssl=1" alt="Maui and Sons" class="h-full w-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col items-center justify-center h-28">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cencosud_logo.svg/1280px-Cencosud_logo.svg.png" alt="Cencosud" class="h-full w-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col items-center justify-center h-28">
+                        <img src="https://europastry.com/cl/wp-content/themes/europastry/assets/img/logo-europastry-black.svg" alt="Europastry" class="h-full w-full object-contain mix-blend-multiply">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAPOSITIVA 7: CONTACTO -->
+        <div class="slide bg-slate-900 text-white p-12 flex flex-col">
+            <div class="text-center mb-8">
+                <h3 class="text-4xl font-bold mb-2">¿Listo para optimizar su logística?</h3>
+                <p class="text-blue-400">Contacte con nuestros expertos</p>
+            </div>
+
+            <div class="flex flex-row justify-center gap-8 flex-1 items-center">
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl w-80 hover:bg-white/10 transition group">
+                    <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-1">Sr. Eugenio Egido</h4>
+                    <p class="text-gray-400 mb-6 text-sm">Encargado de Operaciones</p>
+                    <p class="text-sm text-gray-300 mb-2 flex items-center"><i data-lucide="mail" class="w-4 h-4 mr-2 text-blue-400"></i> eugenioegido@gmail.com</p>
+                    <p class="text-sm text-gray-300 flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-2 text-blue-400"></i> +569 92745608</p>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl w-80 hover:bg-white/10 transition group">
+                    <div class="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-1">Sra. Elizabeth García</h4>
+                    <p class="text-gray-400 mb-6 text-sm">Departamento Comercial</p>
+                    <p class="text-sm text-gray-300 mb-2 flex items-center"><i data-lucide="mail" class="w-4 h-4 mr-2 text-orange-400"></i> egarcia@egidologistica.cl</p>
+                    <p class="text-sm text-gray-300 flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-2 text-orange-400"></i> +569 51898612</p>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t border-white/10 pt-4 flex justify-between items-center text-gray-500 text-sm">
+                <span class="flex items-center"><i data-lucide="map-pin" class="w-4 h-4 mr-2"></i> Valparaíso, Chile</span>
+                <span class="italic">"Honramos el legado de Don Jesús..."</span>
+            </div>
+        </div>
+
+        <!-- CONTROLES -->
+        <button class="nav-btn prev-btn" onclick="prevSlide()"><i data-lucide="chevron-left"></i></button>
+        <button class="nav-btn next-btn" onclick="nextSlide()"><i data-lucide="chevron-right"></i></button>
+
+        <div class="indicators" id="indicators"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(index);
+            indicatorsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlides() {
+            const presentation = document.getElementById('presentation');
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+                if (index === currentSlide) {
+                    if (slide.dataset.theme === 'light') {
+                        presentation.classList.add('light-theme');
+                    } else {
+                        presentation.classList.remove('light-theme');
+                    }
+                }
+            });
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlides();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlides();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
+```
